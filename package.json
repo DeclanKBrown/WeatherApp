@@ -8,8 +8,10 @@
     "start": "webpack serve --open",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "deploy": "npm run build && gh-pages -d dist",
     "build": "webpack"
   },
+  "homepage": "https://yourusername.github.io/your-repo-name/dist/index.html",
   "keywords": [],
   "author": "Declan Brown",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-prettier": "^5.0.0",
+    "gh-pages": "^6.0.0",
     "prettier": "^3.0.2",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
