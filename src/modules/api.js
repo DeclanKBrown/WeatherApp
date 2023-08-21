@@ -1,12 +1,40 @@
-export default class API {
-    static get(location) {
-        fetch(`https://api.weatherapi.com/v1/current.json?key=cec82327ff6049df98a45230232008&q=${location}`, {mode: 'cors'})
-        .then(function(response) {
-            return response.json()
-        })
-        .then(function (response) {
-            console.log(response)
-        })
+const API = (() => {
+    let data = {}
 
+    async function get(location = 'Melbourne', units = 'metric') {
+        try {
+            const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=cec82327ff6049df98a45230232008&q=${location}`, { mode: 'cors' });
+            const responseData = await response.json();
+            updateData(responseData, units);
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+        }
     }
-}
+
+    function updateData(response, units) {
+        console.log(response)
+        if (units === 'metric') {
+            data = {
+                location: response.location.country + ', ' + response.location.name,
+                time: response.location.localtime,
+                temp: response.current.temp_c,
+                condition: response.current.condition.text,
+                feels_like: response.current.feelslike_c,
+                wind: response.current.wind_kph + ' ' + response.current.wind_dir,
+                humidity: response.current.humidity,
+                uv: response.current.uv,
+                vis: response.current.vis_km,
+                cloud: response.current.cloud,
+                precip: response.current.precip_mm 
+            }
+        }
+    }
+
+    function getData() {
+        return data;
+    }
+
+    return { get, getData }
+})()
+
+export default API

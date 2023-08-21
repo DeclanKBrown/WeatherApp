@@ -28,6 +28,12 @@ body {
     grid-template-rows: 6rem 1fr 3rem;
 }
 
+.loader {
+    grid-row: 2 / 3;
+    padding-top: 5rem;
+    justify-self: center;
+}
+
 header {
     display: grid;
     grid-template-columns: 1fr 4fr 2fr;
@@ -142,7 +148,7 @@ main {
     grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
     align-items: center;
-    margin-top: 2rem;
+    padding-top: 5rem;
 }
 
 .sec-info {
